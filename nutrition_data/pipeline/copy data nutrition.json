@@ -53,7 +53,8 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"container_name": "nutrition-data",
-							"file_path": "data/inbound/nutritiondata"
+							"file_path": "data/inbound/nutritiondata",
+							"file_name": "Nutrition_data.csv"
 						}
 					}
 				],
@@ -63,7 +64,8 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"container_name": "nutrition-data",
-							"file_path": "data/inbound/nutritiondata"
+							"file_path": "data/outbound/nutritiondata",
+							"file_name": "copy_Nutrition_data.csv"
 						}
 					}
 				]
