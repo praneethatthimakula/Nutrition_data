@@ -1,0 +1,157 @@
+{
+	"name": "ds_rw_csv",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_abs_devtest",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Nutrition_data.csv",
+				"folderPath": "data/inbound/nutritiondata",
+				"container": "nutrition-data"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "YearStart",
+				"type": "String"
+			},
+			{
+				"name": "YearEnd",
+				"type": "String"
+			},
+			{
+				"name": "LocationAbbr",
+				"type": "String"
+			},
+			{
+				"name": "LocationDesc",
+				"type": "String"
+			},
+			{
+				"name": "Datasource",
+				"type": "String"
+			},
+			{
+				"name": "Class",
+				"type": "String"
+			},
+			{
+				"name": "Topic",
+				"type": "String"
+			},
+			{
+				"name": "Question",
+				"type": "String"
+			},
+			{
+				"name": "Data_Value_Unit",
+				"type": "String"
+			},
+			{
+				"name": "Data_Value_Type",
+				"type": "String"
+			},
+			{
+				"name": "Data_Value",
+				"type": "String"
+			},
+			{
+				"name": "Data_Value_Alt",
+				"type": "String"
+			},
+			{
+				"name": "Data_Value_Footnote_Symbol",
+				"type": "String"
+			},
+			{
+				"name": "Data_Value_Footnote",
+				"type": "String"
+			},
+			{
+				"name": "Low_Confidence_Limit",
+				"type": "String"
+			},
+			{
+				"name": "High_Confidence_Limit ",
+				"type": "String"
+			},
+			{
+				"name": "Sample_Size",
+				"type": "String"
+			},
+			{
+				"name": "Total",
+				"type": "String"
+			},
+			{
+				"name": "Age(years)",
+				"type": "String"
+			},
+			{
+				"name": "Education",
+				"type": "String"
+			},
+			{
+				"name": "Gender",
+				"type": "String"
+			},
+			{
+				"name": "Income",
+				"type": "String"
+			},
+			{
+				"name": "Race/Ethnicity",
+				"type": "String"
+			},
+			{
+				"name": "GeoLocation",
+				"type": "String"
+			},
+			{
+				"name": "ClassID",
+				"type": "String"
+			},
+			{
+				"name": "TopicID",
+				"type": "String"
+			},
+			{
+				"name": "QuestionID",
+				"type": "String"
+			},
+			{
+				"name": "DataValueTypeID",
+				"type": "String"
+			},
+			{
+				"name": "LocationID",
+				"type": "String"
+			},
+			{
+				"name": "StratificationCategory1",
+				"type": "String"
+			},
+			{
+				"name": "Stratification1",
+				"type": "String"
+			},
+			{
+				"name": "StratificationCategoryId1",
+				"type": "String"
+			},
+			{
+				"name": "StratificationID1",
+				"type": "String"
+			}
+		]
+	}
+}
