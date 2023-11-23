@@ -1,0 +1,25 @@
+{
+	"name": "tr_nutrition_data",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2023-11-24T14:53:00",
+				"timeZone": "GMT Standard Time",
+				"schedule": {
+					"minutes": [
+						30
+					],
+					"hours": [
+						16
+					]
+				}
+			}
+		}
+	}
+}
