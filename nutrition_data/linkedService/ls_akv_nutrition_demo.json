@@ -1,15 +1,10 @@
 {
 	"name": "ls_akv_nutrition_demo",
 	"properties": {
-		"parameters": {
-			"lprm_akv_url": {
-				"type": "string"
-			}
-		},
 		"annotations": [],
 		"type": "AzureKeyVault",
 		"typeProperties": {
-			"baseUrl": "@{linkedService().lprm_akv_url}"
+			"baseUrl": "https://akv-nutrition-devtest.vault.azure.net/"
 		}
 	}
 }
