@@ -1,0 +1,10 @@
+{
+	"name": "ls_akv_nutrition_demo",
+	"properties": {
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://akv-nutrition-devtest.vault.azure.net/"
+		}
+	}
+}
