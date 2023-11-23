@@ -71,7 +71,10 @@
 								"type": "Expression"
 							},
 							"file_path": "data/outbound/nutritiondata",
-							"file_name": "copy_Nutrition_data1.csv"
+							"file_name": {
+								"value": "@pipeline().globalParameters.gprm_file_name",
+								"type": "Expression"
+							}
 						}
 					}
 				]
