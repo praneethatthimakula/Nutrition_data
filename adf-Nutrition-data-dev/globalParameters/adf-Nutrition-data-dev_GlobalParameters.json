@@ -2,5 +2,9 @@
 	"gprm_akv_url": {
 		"type": "string",
 		"value": "https://akv-nutrition-devtest.vault.azure.net/"
+	},
+	"gprm_file_name": {
+		"type": "string",
+		"value": "copy_Nutrition_data2.csv"
 	}
 }

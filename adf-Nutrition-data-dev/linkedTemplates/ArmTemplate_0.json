@@ -11,6 +11,10 @@
 			"type": "string",
 			"defaultValue": "https://akv-nutrition-devtest.vault.azure.net/"
 		},
+		"default_properties_gprm_file_name_value": {
+			"type": "string",
+			"defaultValue": "copy_Nutrition_data2.csv"
+		},
 		"ls_akv_nutrition_demo_properties_typeProperties_baseUrl": {
 			"type": "string",
 			"defaultValue": "https://akv-nutrition-devtest.vault.azure.net/"
@@ -32,6 +36,10 @@
 				"gprm_akv_url": {
 					"type": "string",
 					"value": "[parameters('default_properties_gprm_akv_url_value')]"
+				},
+				"gprm_file_name": {
+					"type": "string",
+					"value": "[parameters('default_properties_gprm_file_name_value')]"
 				}
 			},
 			"dependsOn": []
@@ -374,7 +382,10 @@
 										"type": "Expression"
 									},
 									"file_path": "data/outbound/nutritiondata",
-									"file_name": "copy_Nutrition_data1.csv"
+									"file_name": {
+										"value": "@pipeline().globalParameters.gprm_file_name",
+										"type": "Expression"
+									}
 								}
 							}
 						]

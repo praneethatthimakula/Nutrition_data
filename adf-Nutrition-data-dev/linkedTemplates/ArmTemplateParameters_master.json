@@ -14,6 +14,9 @@
 		"default_properties_gprm_akv_url_value": {
 			"value": "https://akv-nutrition-devtest.vault.azure.net/"
 		},
+		"default_properties_gprm_file_name_value": {
+			"value": "copy_Nutrition_data2.csv"
+		},
 		"containerUri": {
 			"value": ""
 		},
