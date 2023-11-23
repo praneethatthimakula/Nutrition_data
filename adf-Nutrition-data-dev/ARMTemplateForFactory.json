@@ -15,6 +15,10 @@
 			"type": "string",
 			"defaultValue": "@{linkedService().lprm_akv_url}"
 		},
+		"tr_nutrition_data_properties_copy data nutrition_parameters_prm_container_name": {
+			"type": "string",
+			"defaultValue": "nutrition-demo"
+		},
 		"default_properties_gprm_akv_url_value": {
 			"type": "string",
 			"defaultValue": "https://akv-nutrition-devtest.vault.azure.net/"
@@ -508,6 +512,46 @@
 				}
 			},
 			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/tr_nutrition_data')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "copy data nutrition",
+							"type": "PipelineReference"
+						},
+						"parameters": {
+							"prm_container_name": "[parameters('tr_nutrition_data_properties_copy data nutrition_parameters_prm_container_name')]"
+						}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Day",
+						"interval": 1,
+						"startTime": "2023-11-24T14:53:00",
+						"timeZone": "GMT Standard Time",
+						"schedule": {
+							"minutes": [
+								30
+							],
+							"hours": [
+								16
+							]
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/copy data nutrition')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/default')]",

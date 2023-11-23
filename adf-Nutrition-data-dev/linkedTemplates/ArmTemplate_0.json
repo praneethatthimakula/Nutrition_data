@@ -22,6 +22,10 @@
 		"ls_abs_devtest_properties_typeProperties_connectionString_secretName": {
 			"type": "string",
 			"defaultValue": "adb-nutrition-data-con-string"
+		},
+		"tr_nutrition_data_properties_copy data nutrition_parameters_prm_container_name": {
+			"type": "string",
+			"defaultValue": "nutrition-demo"
 		}
 	},
 	"variables": {
@@ -523,6 +527,46 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/ds_rw_csv')]",
 				"[concat(variables('factoryId'), '/datasets/Parquet_copy_data')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/tr_nutrition_data')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "copy data nutrition",
+							"type": "PipelineReference"
+						},
+						"parameters": {
+							"prm_container_name": "[parameters('tr_nutrition_data_properties_copy data nutrition_parameters_prm_container_name')]"
+						}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Day",
+						"interval": 1,
+						"startTime": "2023-11-24T14:53:00",
+						"timeZone": "GMT Standard Time",
+						"schedule": {
+							"minutes": [
+								30
+							],
+							"hours": [
+								16
+							]
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/copy data nutrition')]"
 			]
 		}
 	]

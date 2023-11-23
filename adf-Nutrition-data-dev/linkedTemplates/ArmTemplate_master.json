@@ -15,6 +15,10 @@
 			"type": "string",
 			"defaultValue": "@{linkedService().lprm_akv_url}"
 		},
+		"tr_nutrition_data_properties_copy data nutrition_parameters_prm_container_name": {
+			"type": "string",
+			"defaultValue": "nutrition-demo"
+		},
 		"default_properties_gprm_akv_url_value": {
 			"type": "string",
 			"defaultValue": "https://akv-nutrition-devtest.vault.azure.net/"
@@ -61,6 +65,9 @@
 					},
 					"ls_abs_devtest_properties_typeProperties_connectionString_secretName": {
 						"value": "[parameters('ls_abs_devtest_properties_typeProperties_connectionString_secretName')]"
+					},
+					"tr_nutrition_data_properties_copy data nutrition_parameters_prm_container_name": {
+						"value": "[parameters('tr_nutrition_data_properties_copy data nutrition_parameters_prm_container_name')]"
 					}
 				}
 			},
