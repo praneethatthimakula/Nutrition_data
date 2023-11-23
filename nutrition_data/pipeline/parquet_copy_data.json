@@ -52,7 +52,11 @@
 						"parameters": {
 							"container_name": "nutrition-data",
 							"file_path": "data/inbound/nutritiondata",
-							"file_name": "Nutrition_data.csv"
+							"file_name": "Nutrition_data.csv",
+							"akv_url": {
+								"value": "@pipeline().globalParameters.gprm_akv_url",
+								"type": "Expression"
+							}
 						}
 					}
 				],
