@@ -9,13 +9,13 @@
 			"value": "adb-nutrition-data-con-string"
 		},
 		"ls_akv_nutrition_demo_properties_typeProperties_baseUrl": {
-			"value": "https://akv-nutrition-devtest.vault.azure.net/"
+			"value": "@{linkedService().lprm_akv_url}"
 		},
 		"default_properties_gprm_akv_url_value": {
 			"value": "https://akv-nutrition-devtest.vault.azure.net/"
 		},
 		"default_properties_gprm_file_name_value": {
-			"value": "copy_Nutrition_data2.csv"
+			"value": "copy_Nutrition_data3.csv"
 		},
 		"containerUri": {
 			"value": ""

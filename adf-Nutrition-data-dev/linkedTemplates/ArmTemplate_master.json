@@ -13,7 +13,7 @@
 		},
 		"ls_akv_nutrition_demo_properties_typeProperties_baseUrl": {
 			"type": "string",
-			"defaultValue": "https://akv-nutrition-devtest.vault.azure.net/"
+			"defaultValue": "@{linkedService().lprm_akv_url}"
 		},
 		"default_properties_gprm_akv_url_value": {
 			"type": "string",
@@ -21,7 +21,7 @@
 		},
 		"default_properties_gprm_file_name_value": {
 			"type": "string",
-			"defaultValue": "copy_Nutrition_data2.csv"
+			"defaultValue": "copy_Nutrition_data3.csv"
 		},
 		"containerUri": {
 			"type": "string",

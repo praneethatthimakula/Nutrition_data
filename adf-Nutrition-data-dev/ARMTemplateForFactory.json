@@ -13,7 +13,7 @@
 		},
 		"ls_akv_nutrition_demo_properties_typeProperties_baseUrl": {
 			"type": "string",
-			"defaultValue": "https://akv-nutrition-devtest.vault.azure.net/"
+			"defaultValue": "@{linkedService().lprm_akv_url}"
 		},
 		"default_properties_gprm_akv_url_value": {
 			"type": "string",
@@ -21,7 +21,7 @@
 		},
 		"default_properties_gprm_file_name_value": {
 			"type": "string",
-			"defaultValue": "copy_Nutrition_data2.csv"
+			"defaultValue": "copy_Nutrition_data3.csv"
 		}
 	},
 	"variables": {
@@ -89,7 +89,11 @@
 										"type": "Expression"
 									},
 									"file_path": "data/inbound/nutritiondata",
-									"file_name": "Nutrition_data.csv"
+									"file_name": "Nutrition_data.csv",
+									"akv_url": {
+										"value": "@pipeline().globalParameters.gprm_akv_url",
+										"type": "Expression"
+									}
 								}
 							}
 						],
@@ -105,6 +109,10 @@
 									"file_path": "data/outbound/nutritiondata",
 									"file_name": {
 										"value": "@pipeline().globalParameters.gprm_file_name",
+										"type": "Expression"
+									},
+									"akv_url": {
+										"value": "@pipeline().globalParameters.gprm_akv_url",
 										"type": "Expression"
 									}
 								}
@@ -182,7 +190,11 @@
 								"parameters": {
 									"container_name": "nutrition-data",
 									"file_path": "data/inbound/nutritiondata",
-									"file_name": "Nutrition_data.csv"
+									"file_name": "Nutrition_data.csv",
+									"akv_url": {
+										"value": "@pipeline().globalParameters.gprm_akv_url",
+										"type": "Expression"
+									}
 								}
 							}
 						],
@@ -262,7 +274,13 @@
 			"properties": {
 				"linkedServiceName": {
 					"referenceName": "ls_abs_devtest",
-					"type": "LinkedServiceReference"
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"lsprm_akv_uri": {
+							"value": "@dataset().akv_url",
+							"type": "Expression"
+						}
+					}
 				},
 				"parameters": {
 					"container_name": {
@@ -272,6 +290,9 @@
 						"type": "string"
 					},
 					"file_name": {
+						"type": "string"
+					},
+					"akv_url": {
 						"type": "string"
 					}
 				},
@@ -442,6 +463,11 @@
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
 			"properties": {
+				"parameters": {
+					"lsprm_akv_uri": {
+						"type": "string"
+					}
+				},
 				"annotations": [],
 				"type": "AzureBlobStorage",
 				"typeProperties": {
@@ -449,7 +475,13 @@
 						"type": "AzureKeyVaultSecret",
 						"store": {
 							"referenceName": "ls_akv_nutrition_demo",
-							"type": "LinkedServiceReference"
+							"type": "LinkedServiceReference",
+							"parameters": {
+								"lprm_akv_url": {
+									"value": "@linkedService().lsprm_akv_uri",
+									"type": "Expression"
+								}
+							}
 						},
 						"secretName": "[parameters('ls_abs_devtest_properties_typeProperties_connectionString_secretName')]"
 					}
@@ -464,6 +496,11 @@
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
 			"properties": {
+				"parameters": {
+					"lprm_akv_url": {
+						"type": "string"
+					}
+				},
 				"annotations": [],
 				"type": "AzureKeyVault",
 				"typeProperties": {
