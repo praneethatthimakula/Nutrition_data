@@ -1,6 +1,11 @@
 {
 	"name": "ls_abs_devtest",
 	"properties": {
+		"parameters": {
+			"lsprm_akv_uri": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "AzureBlobStorage",
 		"typeProperties": {
@@ -8,7 +13,13 @@
 				"type": "AzureKeyVaultSecret",
 				"store": {
 					"referenceName": "ls_akv_nutrition_demo",
-					"type": "LinkedServiceReference"
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"lprm_akv_url": {
+							"value": "@linkedService().lsprm_akv_uri",
+							"type": "Expression"
+						}
+					}
 				},
 				"secretName": "adb-nutrition-data-con-string"
 			}
