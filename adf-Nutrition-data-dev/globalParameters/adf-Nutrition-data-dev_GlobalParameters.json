@@ -1,1 +1,6 @@
-{}
+{
+	"gprm_akv_url": {
+		"type": "string",
+		"value": "https://akv-nutrition-devtest.vault.azure.net/"
+	}
+}
