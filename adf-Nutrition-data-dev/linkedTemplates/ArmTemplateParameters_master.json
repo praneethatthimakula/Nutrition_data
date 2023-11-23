@@ -5,8 +5,11 @@
 		"factoryName": {
 			"value": "adf-Nutrition-data-dev"
 		},
-		"ls_abs_devtest_connectionString": {
-			"value": ""
+		"ls_abs_devtest_properties_typeProperties_connectionString_secretName": {
+			"value": "adb-nutrition-data-con-string"
+		},
+		"ls_akv_nutrition_demo_properties_typeProperties_baseUrl": {
+			"value": "https://akv-nutrition-devtest.vault.azure.net/"
 		},
 		"containerUri": {
 			"value": ""
