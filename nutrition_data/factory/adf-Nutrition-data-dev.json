@@ -1,0 +1,12 @@
+{
+	"name": "adf-Nutrition-data-dev",
+	"properties": {
+		"globalParameters": {
+			"gprm_akv_url": {
+				"type": "string",
+				"value": "https://akv-nutrition-devtest.vault.azure.net/"
+			}
+		}
+	},
+	"location": "uksouth"
+}
