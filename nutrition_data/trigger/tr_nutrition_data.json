@@ -3,7 +3,17 @@
 	"properties": {
 		"annotations": [],
 		"runtimeState": "Started",
-		"pipelines": [],
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "copy data nutrition",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"prm_container_name": "nutrition-demo"
+				}
+			}
+		],
 		"type": "ScheduleTrigger",
 		"typeProperties": {
 			"recurrence": {
