@@ -3,7 +3,13 @@
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "ls_abs_devtest",
-			"type": "LinkedServiceReference"
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"lsprm_akv_uri": {
+					"value": "@dataset().akv_url",
+					"type": "Expression"
+				}
+			}
 		},
 		"parameters": {
 			"container_name": {
@@ -13,6 +19,9 @@
 				"type": "string"
 			},
 			"file_name": {
+				"type": "string"
+			},
+			"akv_url": {
 				"type": "string"
 			}
 		},
