@@ -14,6 +14,10 @@
 		"ls_akv_nutrition_demo_properties_typeProperties_baseUrl": {
 			"type": "string",
 			"defaultValue": "https://akv-nutrition-devtest.vault.azure.net/"
+		},
+		"default_properties_gprm_akv_url_value": {
+			"type": "string",
+			"defaultValue": "https://akv-nutrition-devtest.vault.azure.net/"
 		}
 	},
 	"variables": {
@@ -457,6 +461,18 @@
 				"type": "AzureKeyVault",
 				"typeProperties": {
 					"baseUrl": "[parameters('ls_akv_nutrition_demo_properties_typeProperties_baseUrl')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/default')]",
+			"type": "Microsoft.DataFactory/factories/globalparameters",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"gprm_akv_url": {
+					"type": "string",
+					"value": "[parameters('default_properties_gprm_akv_url_value')]"
 				}
 			},
 			"dependsOn": []

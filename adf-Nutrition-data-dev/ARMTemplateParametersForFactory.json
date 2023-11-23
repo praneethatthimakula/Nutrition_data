@@ -10,6 +10,9 @@
 		},
 		"ls_akv_nutrition_demo_properties_typeProperties_baseUrl": {
 			"value": "https://akv-nutrition-devtest.vault.azure.net/"
+		},
+		"default_properties_gprm_akv_url_value": {
+			"value": "https://akv-nutrition-devtest.vault.azure.net/"
 		}
 	}
 }

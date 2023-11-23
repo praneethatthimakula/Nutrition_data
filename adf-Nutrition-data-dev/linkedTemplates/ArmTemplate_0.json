@@ -7,6 +7,10 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "adf-Nutrition-data-dev"
 		},
+		"default_properties_gprm_akv_url_value": {
+			"type": "string",
+			"defaultValue": "https://akv-nutrition-devtest.vault.azure.net/"
+		},
 		"ls_akv_nutrition_demo_properties_typeProperties_baseUrl": {
 			"type": "string",
 			"defaultValue": "https://akv-nutrition-devtest.vault.azure.net/"
@@ -20,6 +24,18 @@
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/default')]",
+			"type": "Microsoft.DataFactory/factories/globalparameters",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"gprm_akv_url": {
+					"type": "string",
+					"value": "[parameters('default_properties_gprm_akv_url_value')]"
+				}
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/ls_akv_nutrition_demo')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",

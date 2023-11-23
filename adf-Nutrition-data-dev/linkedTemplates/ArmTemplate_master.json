@@ -15,6 +15,10 @@
 			"type": "string",
 			"defaultValue": "https://akv-nutrition-devtest.vault.azure.net/"
 		},
+		"default_properties_gprm_akv_url_value": {
+			"type": "string",
+			"defaultValue": "https://akv-nutrition-devtest.vault.azure.net/"
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -41,6 +45,9 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"default_properties_gprm_akv_url_value": {
+						"value": "[parameters('default_properties_gprm_akv_url_value')]"
 					},
 					"ls_akv_nutrition_demo_properties_typeProperties_baseUrl": {
 						"value": "[parameters('ls_akv_nutrition_demo_properties_typeProperties_baseUrl')]"
