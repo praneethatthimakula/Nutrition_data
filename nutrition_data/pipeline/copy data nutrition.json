@@ -1,0 +1,74 @@
+{
+	"name": "copy data nutrition",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy nutrition data",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ds_rw_csv",
+						"type": "DatasetReference",
+						"parameters": {
+							"container_name": "nutrition-data",
+							"file_path": "data/inbound/nutritiondata"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ds_rw_csv",
+						"type": "DatasetReference",
+						"parameters": {
+							"container_name": "nutrition-data",
+							"file_path": "data/inbound/nutritiondata"
+						}
+					}
+				]
+			}
+		],
+		"annotations": []
+	}
+}
