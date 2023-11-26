@@ -7,6 +7,10 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "adf-Nutrition-data-dev"
 		},
+		"AzureBlobStorage1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
+		},
 		"ls_abs_devtest_properties_typeProperties_connectionString_secretName": {
 			"type": "string",
 			"defaultValue": "adb-nutrition-data-con-string"
@@ -136,6 +140,60 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/ds_rw_csv')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/data flow')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Data flow1",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "dataflow1",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"source1": {
+										"container_name": "nutrition-data",
+										"file_path": "data/inbound/nutritiondata",
+										"file_name": "Nutrition_data.csv",
+										"akv_url": {
+											"value": "@pipeline().globalParameters.gprm_akv_url",
+											"type": "Expression"
+										}
+									},
+									"sink1": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							},
+							"traceLevel": "Fine"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/dataflows/dataflow1')]"
 			]
 		},
 		{
@@ -463,6 +521,19 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/AzureBlobStorage1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('AzureBlobStorage1_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/ls_abs_devtest')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -551,6 +622,87 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/pipelines/copy data nutrition')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/dataflow1')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "ds_rw_csv",
+								"type": "DatasetReference"
+							},
+							"name": "source1"
+						}
+					],
+					"sinks": [
+						{
+							"name": "sink1"
+						}
+					],
+					"transformations": [
+						{
+							"name": "sort1"
+						}
+					],
+					"scriptLines": [
+						"source(output(",
+						"          YearStart as string,",
+						"          YearEnd as string,",
+						"          LocationAbbr as string,",
+						"          LocationDesc as string,",
+						"          Datasource as string,",
+						"          Class as string,",
+						"          Topic as string,",
+						"          Question as string,",
+						"          Data_Value_Unit as string,",
+						"          Data_Value_Type as string,",
+						"          Data_Value as string,",
+						"          Data_Value_Alt as string,",
+						"          Data_Value_Footnote_Symbol as string,",
+						"          Data_Value_Footnote as string,",
+						"          Low_Confidence_Limit as string,",
+						"          {High_Confidence_Limit } as string,",
+						"          Sample_Size as string,",
+						"          Total as string,",
+						"          {Age(years)} as string,",
+						"          Education as string,",
+						"          Gender as string,",
+						"          Income as string,",
+						"          {Race/Ethnicity} as string,",
+						"          GeoLocation as string,",
+						"          ClassID as string,",
+						"          TopicID as string,",
+						"          QuestionID as string,",
+						"          DataValueTypeID as string,",
+						"          LocationID as string,",
+						"          StratificationCategory1 as string,",
+						"          Stratification1 as string,",
+						"          StratificationCategoryId1 as string,",
+						"          StratificationID1 as string",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false) ~> source1",
+						"source1 sort(asc(YearStart, true),",
+						"     asc(YearEnd, true)) ~> sort1",
+						"sort1 sink(validateSchema: false,",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     store: 'cache',",
+						"     format: 'inline',",
+						"     output: false,",
+						"     saveOrder: 1) ~> sink1"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/ds_rw_csv')]"
 			]
 		},
 		{
