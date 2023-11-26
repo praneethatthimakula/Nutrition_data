@@ -1,0 +1,76 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ds_rw_csv",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "sort1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          YearStart as string,",
+				"          YearEnd as string,",
+				"          LocationAbbr as string,",
+				"          LocationDesc as string,",
+				"          Datasource as string,",
+				"          Class as string,",
+				"          Topic as string,",
+				"          Question as string,",
+				"          Data_Value_Unit as string,",
+				"          Data_Value_Type as string,",
+				"          Data_Value as string,",
+				"          Data_Value_Alt as string,",
+				"          Data_Value_Footnote_Symbol as string,",
+				"          Data_Value_Footnote as string,",
+				"          Low_Confidence_Limit as string,",
+				"          {High_Confidence_Limit } as string,",
+				"          Sample_Size as string,",
+				"          Total as string,",
+				"          {Age(years)} as string,",
+				"          Education as string,",
+				"          Gender as string,",
+				"          Income as string,",
+				"          {Race/Ethnicity} as string,",
+				"          GeoLocation as string,",
+				"          ClassID as string,",
+				"          TopicID as string,",
+				"          QuestionID as string,",
+				"          DataValueTypeID as string,",
+				"          LocationID as string,",
+				"          StratificationCategory1 as string,",
+				"          Stratification1 as string,",
+				"          StratificationCategoryId1 as string,",
+				"          StratificationID1 as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 sort(asc(YearStart, true),",
+				"     asc(YearEnd, true)) ~> sort1",
+				"sort1 sink(validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     store: 'cache',",
+				"     format: 'inline',",
+				"     output: false,",
+				"     saveOrder: 1) ~> sink1"
+			]
+		}
+	}
+}
