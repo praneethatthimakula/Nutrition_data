@@ -11,6 +11,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
 		},
+		"nutrition_sp_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'nutrition_sp'"
+		},
 		"ls_abs_devtest_properties_typeProperties_connectionString_secretName": {
 			"type": "string",
 			"defaultValue": "adb-nutrition-data-con-string"
@@ -60,6 +64,9 @@
 					},
 					"AzureBlobStorage1_connectionString": {
 						"value": "[parameters('AzureBlobStorage1_connectionString')]"
+					},
+					"nutrition_sp_connectionString": {
+						"value": "[parameters('nutrition_sp_connectionString')]"
 					},
 					"default_properties_gprm_akv_url_value": {
 						"value": "[parameters('default_properties_gprm_akv_url_value')]"
