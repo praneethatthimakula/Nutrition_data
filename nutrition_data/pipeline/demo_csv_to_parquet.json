@@ -1,9 +1,9 @@
 {
-	"name": "copy data nutrition",
+	"name": "demo_csv_to_parquet",
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy nutrition data",
+				"name": "Copy data1",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -27,14 +27,12 @@
 						}
 					},
 					"sink": {
-						"type": "DelimitedTextSink",
+						"type": "ParquetSink",
 						"storeSettings": {
 							"type": "AzureBlobStorageWriteSettings"
 						},
 						"formatSettings": {
-							"type": "DelimitedTextWriteSettings",
-							"quoteAllText": true,
-							"fileExtension": ".txt"
+							"type": "ParquetWriteSettings"
 						}
 					},
 					"enableStaging": false,
@@ -49,52 +47,30 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "ds_rw_csv",
+						"referenceName": "demo_csv1",
 						"type": "DatasetReference",
 						"parameters": {
-							"container_name": {
-								"value": "@pipeline().parameters.prm_container_name",
-								"type": "Expression"
-							},
-							"file_path": "data/inbound/nutritiondata",
-							"file_name": "Nutrition_data.csv",
-							"akv_url": {
-								"value": "@pipeline().globalParameters.gprm_akv_url",
-								"type": "Expression"
-							}
+							"container": "demo",
+							"file_path": "data/inbound",
+							"file_name": "dmofile.csv"
 						}
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "ds_rw_csv",
+						"referenceName": "demo_Parquet1",
 						"type": "DatasetReference",
 						"parameters": {
-							"container_name": {
-								"value": "@pipeline().parameters.prm_container_name",
-								"type": "Expression"
-							},
-							"file_path": "data/outbound/nutritiondata",
-							"file_name": {
-								"value": "@pipeline().globalParameters.gprm_file_name",
-								"type": "Expression"
-							},
-							"akv_url": {
-								"value": "@pipeline().globalParameters.gprm_akv_url",
-								"type": "Expression"
-							}
+							"container": "demo",
+							"file_path": "data/outbound",
+							"file_name": "demo_parquet.parquet"
 						}
 					}
 				]
 			}
 		],
-		"parameters": {
-			"prm_container_name": {
-				"type": "string"
-			}
-		},
 		"folder": {
-			"name": "class"
+			"name": "demo"
 		},
 		"annotations": []
 	}

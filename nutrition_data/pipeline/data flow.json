@@ -38,6 +38,9 @@
 				}
 			}
 		],
+		"folder": {
+			"name": "class"
+		},
 		"annotations": []
 	}
 }

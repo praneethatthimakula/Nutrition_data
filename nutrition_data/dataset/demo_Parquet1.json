@@ -1,5 +1,5 @@
 {
-	"name": "DelimitedText1",
+	"name": "demo_Parquet1",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureBlobStorage1",
@@ -17,10 +17,10 @@
 			}
 		},
 		"folder": {
-			"name": "class"
+			"name": "demo"
 		},
 		"annotations": [],
-		"type": "DelimitedText",
+		"type": "Parquet",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
@@ -37,16 +37,8 @@
 					"type": "Expression"
 				}
 			},
-			"columnDelimiter": ",",
-			"escapeChar": "\\",
-			"firstRowAsHeader": true,
-			"quoteChar": "\""
+			"compressionCodec": "snappy"
 		},
-		"schema": [
-			{
-				"name": "Username; Identifier;First_name;Last_name",
-				"type": "String"
-			}
-		]
+		"schema": []
 	}
 }

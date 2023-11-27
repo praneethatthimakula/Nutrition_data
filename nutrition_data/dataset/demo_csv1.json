@@ -1,5 +1,5 @@
 {
-	"name": "DelimitedText1",
+	"name": "demo_csv1",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureBlobStorage1",
@@ -17,7 +17,7 @@
 			}
 		},
 		"folder": {
-			"name": "class"
+			"name": "demo"
 		},
 		"annotations": [],
 		"type": "DelimitedText",
@@ -44,7 +44,19 @@
 		},
 		"schema": [
 			{
-				"name": "Username; Identifier;First_name;Last_name",
+				"name": "Username",
+				"type": "String"
+			},
+			{
+				"name": "Identifier",
+				"type": "String"
+			},
+			{
+				"name": "First_name",
+				"type": "String"
+			},
+			{
+				"name": "Last_name",
 				"type": "String"
 			}
 		]

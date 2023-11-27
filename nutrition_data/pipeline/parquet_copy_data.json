@@ -73,6 +73,9 @@
 				]
 			}
 		],
+		"folder": {
+			"name": "class"
+		},
 		"annotations": []
 	}
 }
