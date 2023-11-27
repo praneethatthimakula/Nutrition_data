@@ -26,14 +26,46 @@
 							"type": "ParquetReadSettings"
 						}
 					},
-					"enableStaging": false
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
 				},
 				"inputs": [
 					{
 						"referenceName": "demo_Parquet1",
 						"type": "DatasetReference",
 						"parameters": {
+							"container": "demo",
+							"file_path": "data/outbound",
 							"file_name": "demo_parquet.parquet"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "demo_csv1",
+						"type": "DatasetReference",
+						"parameters": {
+							"container": "demo",
+							"file_path": "data/inbound",
+							"file_name": "demo_csv.csv"
 						}
 					}
 				]
