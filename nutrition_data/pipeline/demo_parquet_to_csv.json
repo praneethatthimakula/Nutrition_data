@@ -1,5 +1,5 @@
 {
-	"name": "pipeline1",
+	"name": "demo_parquet_to_csv",
 	"properties": {
 		"activities": [
 			{
