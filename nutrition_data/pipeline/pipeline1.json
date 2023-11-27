@@ -62,8 +62,8 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"container": "demo",
-							"file_name": "data/input/usernames",
-							"file_path": "copy_username.csv"
+							"file_name": "dusername.csv",
+							"file_path": "data/input/usernames"
 						}
 					}
 				]
